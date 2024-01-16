@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex; 
+    flex-direction: row;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+.navButton {
+        background-color: #335d6d;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+}
+
+.navButton:hover {
+    background-color: rgb(180, 173, 221);
+    color: black;
+}
+
+.greeting {
+    font-size: 20px;
+}

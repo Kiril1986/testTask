@@ -1,0 +1,38 @@
+.formContainer {
+    width: 300px;
+    margin: auto;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .formContainer input {
+    width: 100%;
+    padding: 8px;
+    
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  
+  .submitButton {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: rgb(24, 182, 93);
+    color: black;
+  }
+
+  .error {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+  }
