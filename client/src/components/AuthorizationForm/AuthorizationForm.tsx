@@ -28,7 +28,7 @@ const auth = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     if (data.success) {
    onChangeUser(data.user)
    localStorage.setItem("userId", data.user._id)
-   // navigate("/people")
+   navigate("/people")
   }
   else {
     setPasswordError(data.error)

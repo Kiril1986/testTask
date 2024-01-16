@@ -37,7 +37,7 @@ module.exports = router.post("/api/auth", async (req, res) => {
         res.status(200).json({success: true, message: "Welcome back", user: user})
       }
      } else {
-    res.status(404).json({message: "No such user registered"})
+    res.status(404).json({error: "No such user registered"})
     }
   }
   catch (e) {
