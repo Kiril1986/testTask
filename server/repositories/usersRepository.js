@@ -6,7 +6,7 @@ const axios = require("axios")
 const fs = require('fs');
 
 // eslint-disable-next-line no-undef
-const client = new MongoClient(`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.aradlng.mongodb.net/?retryWrites=true&w=majority`)
+const client = new MongoClient(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.aradlng.mongodb.net/?retryWrites=true&w=majority`)
 
 const seedSize = 21;
 const staticFolderPath = path.resolve("server", "..", "public");

@@ -10,6 +10,7 @@ const ShowPeople = React.memo(() => {
   const [users, setUsers] = useState<User[]>([]);
   const { user } = useContext(UserContext);
   const [error, setError] = useState<string | null>(null);
+  
   useEffect(() => {
     async function getAllUsers() {
       const res = await fetch(`${PREFIX}/people`);

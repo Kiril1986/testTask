@@ -3,6 +3,7 @@ import { UserData } from './UserCard.props'
 import styles from "./UserCard.module.css"
 
 function UserCard({user}: UserData) {
+  
     function calculateAge(birthdate: string) {
     const currentDate = new Date();
     const birthdateDate = new Date(birthdate);
@@ -16,7 +17,9 @@ function UserCard({user}: UserData) {
     }
       return age;
   }
+
   const age = calculateAge(user.birthDate);
+
     return (
     <div className={styles["wrapper"]}>
         <img alt="profile photo" className={styles["image"]} src={user.photo}/>

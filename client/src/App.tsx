@@ -10,6 +10,7 @@ import Unauthorized from "./components/Unauthorized/Unauthorized";
 
 function App() {
   const { user } = useContext(UserContext)
+  
   return (
 <>
 <NavBar/>

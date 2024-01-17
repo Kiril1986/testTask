@@ -5,6 +5,7 @@ import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import {PREFIX} from "../../constants/vars.ts";
 import styles from "./Main.module.css"
+import { Data } from "./Main.props.ts";
 
 function Main() {
 const [show, setShow] = useState<boolean>(true)
@@ -13,7 +14,7 @@ const navigate = useNavigate();
 
 async function logOut () {
   try {
-  const userId = user?._id;
+  const userId: string | undefined = user?._id;
   const res = await fetch(`${PREFIX}/api/logout`, {
     method: 'POST', 
     headers: {
@@ -22,7 +23,7 @@ async function logOut () {
     credentials: "include",
     body: JSON.stringify({userId})
   });
-  const data = await res.json()
+  const data: Data = await res.json()
    if (data.success) {
       localStorage.removeItem("userId")
       } else {

@@ -7,12 +7,27 @@ import { useNavigate } from 'react-router-dom';
 
 function AccountPage() {
   const { user, onChangeUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [formData, setFormData] = useState<Pick<registrationFormData, "_id" | "name" | "password" | "photo">>(initialData);
+  
+  const validateImageFormat = (imagePath: string) => {
+  const allowedExtensions = /(\.jpg)$/i;
+  return allowedExtensions.exec(imagePath);
+  };
+  
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    if (event.target.name === "photo") {
+      if (!validateImageFormat(event.target.value)) {
+       setPasswordError("Please provide file with .jpg extension.");
+             return;
+         } else {
+             setPasswordError(null);
+           }
+            }
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  const navigate = useNavigate();
+  
   const update = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const _id: string | undefined = user?._id
@@ -46,7 +61,7 @@ function AccountPage() {
         </label>
         <label>
           Enter new photo
-          <input type="text" name="photo" value={formData.photo} onChange={onChange}  required/>
+          <input type="text" name="photo" value={formData.photo} onChange={onChange}  required accept=".jpg"/>
         </label>
         {passwordError && <p className={styles['error']}>{passwordError}</p>}
         <button className={styles["submitButton"]} type="submit">Update</button>

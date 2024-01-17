@@ -9,6 +9,8 @@ function RegistrationForm () {
   const { onChangeUser } = useContext(UserContext);
   const [formData, setFormData] = useState<registrationFormData>(initialData);
   const [passwordError, setPasswordError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
   function getMaxDate() {
     const today = new Date();
     const maxDate = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate());
@@ -17,10 +19,24 @@ function RegistrationForm () {
     const day = String(maxDate.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
-    const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  
+  const validateImageFormat = (imagePath: string) => {
+    const allowedExtensions = /(\.jpg)$/i;
+    return allowedExtensions.exec(imagePath);
+  };
+  
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    if (event.target.name === "photo") {
+       if (!validateImageFormat(event.target.value)) {
+        setPasswordError("Please provide file with .jpg extension");
+              return;
+          } else {
+              setPasswordError(null);
+            }
+             }
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  const navigate = useNavigate();
+ 
   const register = async (e: FormEvent<HTMLFormElement>):  Promise<void> => {
     e.preventDefault()
     if (formData.password !== formData.cpassword) {
@@ -114,13 +130,14 @@ function RegistrationForm () {
           />
         </label>
          <label>
-          Photo:
+          Photo (.jpg):
           <input
             type="text"
             name="photo"
             value={formData.photo}
             onChange={onChange}
             required
+            accept=".jpg"
           />
         </label>
         {passwordError && <p className={styles['error']}>{passwordError}</p>}
